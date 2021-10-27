@@ -42,7 +42,8 @@ public class RedisDaoImpl implements RedisDao{
             System.out.println("current value is "+value);
             if(Objects.nonNull(value)){
                 int val = Integer.parseInt(value);
-                this.map.put(id, String.valueOf(val+1));
+                val+=1;
+                this.map.put(id, String.valueOf(val));
                 System.out.println("updated value is "+ (val));
             }
             else{
