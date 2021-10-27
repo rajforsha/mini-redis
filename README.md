@@ -6,7 +6,8 @@ ab -n 100 -c 10 -u data.json -T application/json http://localhost:8080/my-redis/
  
 
 # api expose are:
-```curl --location --request POST 'localhost:8080/my-redis' \
+```
+curl --location --request POST 'localhost:8080/my-redis' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "key":"threadSafeKey",
