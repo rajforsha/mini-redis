@@ -9,29 +9,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class RedisServiceImpl implements RedisService {
 
-    @Autowired
+
     RedisDao redisDao;
 
-    // Lock lock = new ReentrantLock();
+    @Autowired
+    public RedisServiceImpl( RedisDao redisDao){
+        this.redisDao = redisDao;
+    }
+
 
     @Override
     public String get(String id){
         return redisDao.get(id);
-
     }
 
     @Override
     public void create (String id, String value){
-        synchronized (id){
-            redisDao.create(id, value);
-        }
+        redisDao.create(id, value);
     }
 
     @Override
     public void update(String id){
 
-        synchronized (id){
-            redisDao.update(id);
-        }
+        redisDao.update(id);
+
     }
 }
