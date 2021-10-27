@@ -36,14 +36,28 @@ public class RedisDaoImpl implements RedisDao{
 
     public void update(String id){
         System.out.println(Thread.currentThread().getName());
-        synchronized (RedisDaoImpl.class){
+        synchronized (id){
             String value = this.map.get(id);
             System.out.println("current value is "+value);
             if(Objects.nonNull(value)){
-                AtomicInteger val = new AtomicInteger(Integer.parseInt(value));
-                this.map.put(id, String.valueOf(val.incrementAndGet()));
+                int val = Integer.parseInt(value);
+                this.map.put(id, String.valueOf(val+1));
                 System.out.println("updated value is "+ (val));
             }
         }
+
+//        lock.lock();
+//        try{
+//            String value = this.map.get(id);
+//            System.out.println("current value is "+value);
+//            if(Objects.nonNull(value)){
+//                AtomicInteger val = new AtomicInteger(Integer.parseInt(value));
+//                this.map.put(id, String.valueOf(val.incrementAndGet()));
+//                System.out.println("updated value is "+ (val));
+//            }
+//        }
+//        finally {
+//            lock.unlock();
+//        }
     }
 }
