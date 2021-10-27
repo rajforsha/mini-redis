@@ -1,6 +1,7 @@
 package com.raj.shashi.serviceImpl;
 
 import com.raj.shashi.dao.RedisDao;
+import com.raj.shashi.exception.KeyNotFoundException;
 import com.raj.shashi.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public void update(String id){
+    public void update(String id) throws KeyNotFoundException {
 
         redisDao.update(id);
 

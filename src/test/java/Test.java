@@ -15,7 +15,13 @@ public class Test {
 
     public void update(){
 
-        this.redisService.update("threadSafeKey");
+        try{
+            this.redisService.update("threadSafeKey");
+        }
+        catch(Exception e){
+
+        }
+
     }
 
     public void post(){

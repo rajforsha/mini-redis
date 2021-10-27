@@ -1,5 +1,6 @@
 package com.raj.shashi.dao;
 
+import com.raj.shashi.exception.KeyNotFoundException;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -34,7 +35,7 @@ public class RedisDaoImpl implements RedisDao{
         }
     }
 
-    public void update(String id){
+    public void update(String id) throws KeyNotFoundException{
         System.out.println(Thread.currentThread().getName());
         synchronized (id){
             String value = this.map.get(id);
@@ -43,6 +44,9 @@ public class RedisDaoImpl implements RedisDao{
                 int val = Integer.parseInt(value);
                 this.map.put(id, String.valueOf(val+1));
                 System.out.println("updated value is "+ (val));
+            }
+            else{
+                throw new KeyNotFoundException(id+ "doesn't exists");
             }
         }
 

@@ -28,6 +28,14 @@ public class RedisController {
     @PutMapping("/increment/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void update(@PathVariable String id){
-        redisService.update(id);
+
+        try{
+            redisService.update(id);
+        }
+        catch(Exception e){
+
+
+        }
+
     }
 }
